@@ -49,7 +49,6 @@
                 <!--  Shadow panel with the shaders list  -->
                 <Border
                     x:Name="ShadersListContainerPanel"
-                    Height="320"
                     Margin="-20,0,-20,0"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Bottom"
@@ -76,37 +75,35 @@
                     </ui:Effects.Shadow>
 
                     <!--  Shaders list  -->
-                    <ListView
+                    <ItemsRepeater
                         ItemsSource="{x:Bind ViewModel.ComputeShaderOptions}"
                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
                         ScrollViewer.HorizontalScrollMode="Enabled"
                         ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                        ScrollViewer.VerticalScrollMode="Disabled"
-                        SelectedItem="{x:Bind ViewModel.SelectedComputeShader, Mode=TwoWay}"
-                        SelectionMode="Single">
-                        <ListView.Resources>
+                        ScrollViewer.VerticalScrollMode="Disabled">
+                        <ItemsRepeater.Layout>
+                            <UniformGridLayout MinItemWidth="240" MinItemHeight="135"
+                   MinRowSpacing="12" MinColumnSpacing="12"/>
+                        </ItemsRepeater.Layout>
 
-                            <!--
+                        <ItemsRepeater.Resources>
+
+                        <!--
                                 Lightweight styling to remove the selection background with the accent color, and
                                 to remove the padding and stretch the list items to occupy all the available space
                             -->
-                            <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="Transparent" />
-                            <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver" Color="Transparent" />
-                            <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPressed" Color="Transparent" />
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                                <Setter Property="VerticalContentAlignment" Value="Stretch" />
-                                <Setter Property="HorizontalAlignment" Value="Stretch" />
-                                <Setter Property="VerticalAlignment" Value="Stretch" />
-                                <Setter Property="Padding" Value="0" />
-                            </Style>
-                        </ListView.Resources>
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <ItemsStackPanel Orientation="Horizontal" />
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                        <ListView.ItemTemplate>
+                        <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="Transparent" />
+                        <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver" Color="Transparent" />
+                        <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPressed" Color="Transparent" />
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                            <Setter Property="HorizontalAlignment" Value="Stretch" />
+                            <Setter Property="VerticalAlignment" Value="Stretch" />
+                            <Setter Property="Padding" Value="0" />
+                        </Style>
+                        </ItemsRepeater.Resources>
+                        <ItemsRepeater.ItemTemplate>
 
                             <!--  Shader template  -->
                             <DataTemplate x:DataType="viewmodels:ShaderRunnerViewModel">
@@ -142,8 +139,8 @@
                                     </Grid>
                                 </controls:ConstrainedBox>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        </ItemsRepeater.ItemTemplate>
+                    </ItemsRepeater>
                 </Border>
             </Border>
         </Grid.Resources>

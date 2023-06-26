@@ -64,7 +64,7 @@ public sealed partial class MainWindow : Window
     // Updates the size of the shaders list panel
     private void Window_SizeChanged(object sender, WindowSizeChangedEventArgs e)
     {
-        this.ShadersListContainerPanel.Height = Math.Round(e.Size.Height * 0.35);
+        this.ShadersListContainerPanel.Height = Math.Round(e.Size.Height);
     }
 
     // Tracks the current panel
